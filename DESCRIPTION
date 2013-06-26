@@ -1,8 +1,8 @@
 Package: decctools
 Type: Package
-Author: James Keirstead <james.keirstead@gmail.com>
-Maintainer: James Keirstead <james.keirstead@gmail.com>
-Version: 0.1.0
+Author: James Keirstead <j.keirstead@imperial.ac.uk>
+Maintainer: James Keirstead <j.keirstead@imperial.ac.uk>
+Version: 0.1.1
 License: GPL-2
 Title: Get energy data from the UK Dept of Energy and Climate Change
 Description: decctools provides functions for retrieving energy
@@ -12,12 +12,12 @@ Description: decctools provides functions for retrieving energy
         local authority, MSOA, and LSOA geographies.  Methods for
         calculating the generation mix of grid electricity and its
         associated carbon intensity are also provided.
-Date: 2013-04-14
+Date: 2013-06-26
 Depends: stringr, XLConnect, XML, lubridate, reshape2, RCurl, plyr
 LazyData: true
 Collate: 'decctools.r' 'utils.r' 'msoa.r' 'lsoa.r' 'lad.r'
         'carbon-intensity.r'
-Packaged: 2013-06-24 14:54:06 UTC; admin
+Packaged: 2013-06-26 03:04:10 UTC; admin
 NeedsCompilation: no
 Repository: CRAN
-Date/Publication: 2013-06-24 17:21:40
+Date/Publication: 2013-06-26 08:03:45
