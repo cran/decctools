@@ -12,10 +12,12 @@
 #' # These require a working internet connection
 #' start <- "2010-01-01"
 #' end <- "2010-01-07"
+#' library(RCurl)
 #' if (url.exists("http://www.google.com")) {
 #'   data <- get_grid_mix(start, end) # Gets data for 1st week of January 2010
 #' }
 #' @export
+#' @import stringr XML
 get_grid_mix <- function(start, end) {
 
   ## Coerce strings to proper dates
@@ -45,7 +47,7 @@ get_grid_mix <- function(start, end) {
   base_url <- "http://www.ref.org.uk/fuel/tablebysp.php?valdate="
   for (i in 1:length(dates)) {
     url <- paste(base_url, dates[i], sep="")
-    table <- readHTMLTable(url, colClasses=columns)[[2]]
+    table <- suppressWarnings(readHTMLTable(url, colClasses=columns)[[2]])
     tmp[[i]] <- table
   }
   data <- do.call("rbind", tmp)
@@ -74,10 +76,12 @@ get_grid_mix <- function(start, end) {
 #' # These require a working internet connection
 #' start <- "2010-01-01"
 #' end <- "2010-01-07"
+#' library(RCurl)
 #' if (url.exists("http://www.google.com")) {
 #'   carbon <- get_grid_carbon(start, end) # Gets grid carbon for 1st week of January 2010
 #' }
 #' @export
+#' @import reshape2
 get_grid_carbon <- function(start, end) {
 
   ## Get the grid mix data for this period
@@ -107,7 +111,7 @@ get_last_date <- function() {
   
   base_url <- "http://www.ref.org.uk/fuel/tablebysp.php"
   columns <- c("character","numeric", rep("FormattedNumber", 14)) 
-  table <- readHTMLTable(base_url, colClasses=columns)[[2]]
+  table <- suppressWarnings(readHTMLTable(base_url, colClasses=columns)[[2]])
   last_date <- as.Date(as.character(tail(table$SD, 1)))
   return(last_date)
 }
